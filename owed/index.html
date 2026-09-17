@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>owed — Find money you might be owed</title>
+
+<!-- Client-side fallback. The Netlify edge function already redirects clear
+     iPhone / iPad / Android user-agents server-side, before this page is served,
+     so those devices never see this page. This script only catches the one case
+     the server can't see from the user-agent alone: an iPad, or an iPhone in
+     Safari's "Request Desktop Website" mode, which sends a Mac user-agent but has
+     a multi-touch screen (no real Mac does). It runs before the page renders. -->
+<script>
+  (function () {
+    if (/[?&]debug/i.test(location.search)) return; // ?debug: don't redirect
+    var ua = navigator.userAgent || "";
+    var platform = navigator.platform || "";
+    var mt = navigator.maxTouchPoints || 0;
+    var isAppleTouch = /iPad|iPhone|iPod/i.test(ua) ||
+                       ((/Mac/i.test(ua) || /Mac/i.test(platform)) && mt > 1);
+    var isAndroid = /Android/i.test(ua);
+    if (isAppleTouch) {
+      window.location.replace("https://apps.apple.com/app/id6777274279");
+    } else if (isAndroid) {
+      window.location.replace("https://play.google.com/store/apps/details?id=one.bramley.owed");
+    }
+  })();
+</script>
+<meta name="description" content="owed finds the class-action settlements you might match and links you to the official claim form. Free settlement discovery, no account, no bank linking. Live on the App Store." />
+<link rel="icon" href="img/owed-icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --background:#EEF0F2;
+    --foreground:#0F2A2E;
+    --secondary:#DDE3E6;
+    --muted:#E5EAEC;
+    --muted-foreground:#5C7378;
+    --accent:#C8852C;
+    --success:#3F7A5E;
+    --card:#FFFFFF;
+    --border:#D5DBDE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--background);
+    color:var(--foreground);
+    font-family:"Inter Tight",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"tnum" 1,"lnum" 1;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  header{padding:28px 0 8px}
+  .brand{
+    font-family:"Instrument Serif",Georgia,serif;
+    font-style:italic;
+    font-size:30px;
+    line-height:1;
+    letter-spacing:-0.01em;
+  }
+  .brand .dot{color:var(--accent)}
+  .brand small{
+    display:block;
+    font-family:"Inter Tight",sans-serif;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted-foreground);
+    margin-top:4px;
+  }
+
+  .hero{padding:56px 0 24px;display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center}
+  h1{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:500;
+    font-size:clamp(38px,5.2vw,60px);
+    line-height:1.04;
+    letter-spacing:-0.025em;
+  }
+  .lede{
+    margin-top:20px;
+    font-size:19px;
+    color:#254247;
+    max-width:36ch;
+  }
+  .lede strong{font-weight:600;color:var(--foreground)}
+
+  .stores{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .store-btn{
+    display:inline-flex;align-items:center;gap:11px;
+    background:var(--foreground);color:var(--background);
+    text-decoration:none;border-radius:13px;
+    padding:11px 18px;min-height:56px;
+    transition:transform .12s ease,opacity .12s ease;
+  }
+  .store-btn:hover{transform:translateY(-1px);opacity:.94}
+  .store-btn svg{flex:none}
+  .store-btn .lines{display:flex;flex-direction:column;line-height:1.12}
+  .store-btn .lines .top{font-size:11px;letter-spacing:0.02em;opacity:.85}
+  .store-btn .lines .bot{font-size:19px;font-weight:600;letter-spacing:-0.01em}
+
+  .phones{position:relative;height:100%;display:flex;justify-content:center;align-items:center;gap:0}
+  .phone{
+    width:200px;border-radius:30px;overflow:hidden;
+    border:6px solid var(--foreground);
+    box-shadow:0 24px 60px -20px rgba(15,42,46,.42);
+    background:var(--foreground);
+    display:block;
+  }
+  .phone img{width:100%;display:block}
+  .phone.back{transform:translateX(46px) translateY(18px) scale(.9) rotate(4deg);opacity:.96;position:absolute;z-index:1}
+  .phone.front{position:relative;z-index:2;transform:translateX(-24px) rotate(-3deg)}
+
+  .wedge{margin-top:40px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px}
+  .wedge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .wedge h3{font-family:"Fraunces",serif;font-weight:500;font-size:18px;letter-spacing:-0.01em;margin-bottom:6px}
+  .wedge p{font-size:14.5px;color:var(--muted-foreground)}
+  .wedge .k{color:var(--success);font-weight:600}
+
+  .how{margin-top:64px}
+  .how h2, .info h2{font-family:"Fraunces",serif;font-weight:500;font-size:30px;letter-spacing:-0.02em;margin-bottom:28px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px}
+  .step .n{
+    font-family:"Fraunces",serif;font-size:15px;font-weight:500;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--secondary);color:var(--foreground);
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  .step h3{font-size:17px;font-weight:600;margin-bottom:6px}
+  .step p{font-size:14.5px;color:var(--muted-foreground)}
+
+  .info{margin-top:64px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px}
+  .info p{font-size:16px;color:#254247;max-width:62ch}
+  .info p + p{margin-top:14px}
+  .pill{display:inline-block;background:var(--secondary);color:var(--foreground);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;margin-bottom:14px}
+
+  footer{margin-top:64px;padding:36px 0 60px;border-top:1px solid var(--border)}
+  .foot-links{display:flex;flex-wrap:wrap;gap:20px;font-size:14.5px;margin-bottom:18px}
+  .foot-links a{color:var(--foreground);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px}
+  .foot-links a:hover{border-color:var(--foreground)}
+  .disclaimer{font-size:13px;color:var(--muted-foreground);max-width:70ch;line-height:1.6}
+  .copyright{font-size:13px;color:var(--muted-foreground);margin-top:16px}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;gap:8px;padding:40px 0 8px}
+    .phones{margin-top:36px;height:auto;min-height:400px}
+    .wedge-grid{grid-template-columns:repeat(2,1fr);gap:22px}
+    .steps{grid-template-columns:1fr}
+  }
+  @media (max-width:520px){
+    .wedge-grid{grid-template-columns:1fr}
+    .phone{width:170px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">owed<span class="dot">.</span><small>by Bramley</small></div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Find money you might be owed.</h1>
+      <p class="lede"><strong>$35B+ a year</strong> in class-action settlement money goes unclaimed. owed finds the ones you might match, then links you to the official claim form.</p>
+
+      <div class="stores">
+        <!-- App Store — live -->
+        <a class="store-btn" href="https://apps.apple.com/app/id6777274279" aria-label="Download owed on the App Store">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span class="lines"><span class="top">Download on the</span><span class="bot">App Store</span></span>
+        </a>
+
+        <!-- Google Play — link resolves once the Play listing is approved (in review as of 2026-08-11). -->
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=one.bramley.owed" aria-label="Get owed on Google Play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.3c-.2.2-.32.53-.32.94v17.52c0 .41.12.74.33.94l.06.05 9.8-9.8v-.1L3.66 2.24l-.06.06zM17.1 15.1l-3.27-3.27v-.1l3.28-3.28.07.04 3.87 2.2c1.1.63 1.1 1.66 0 2.29l-3.87 2.2-.08-.03zM13.83 11.73L3.98 21.6c.36.38.96.43 1.63.05l11.55-6.56-3.33-3.36zM17.16 8.66L5.6 2.1c-.67-.38-1.27-.33-1.63.05l9.85 9.85 3.34-3.34z"/></svg>
+          <span class="lines"><span class="top">Get it on</span><span class="bot">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="phones">
+      <div class="phone back"><img src="img/screen-settlement.png" alt="A settlement detail in owed, showing the payout range, deadline and a link to the official claim form" /></div>
+      <div class="phone front"><img src="img/screen-home.png" alt="The owed home screen listing active class-action settlements you may match" /></div>
+    </div>
+  </section>
+
+  <section class="wedge">
+    <div class="wedge-grid">
+      <div><h3>Free, forever</h3><p><span class="k">The whole core.</span> Finding settlements, matching, official claim links and deadline reminders. No ads.</p></div>
+      <div><h3>No account</h3><p><span class="k">Nothing to hand over.</span> No sign-up, no bank linking. Matching stays on your device.</p></div>
+      <div><h3>You keep 100%</h3><p><span class="k">No cut, ever.</span> The settlement administrator pays you directly. owed is never in the payment path.</p></div>
+      <div><h3>One-tap cancel</h3><p><span class="k">No wall.</span> owed+ cancels in two taps, in-app, with a reminder before every renewal.</p></div>
+    </div>
+  </section>
+
+  <section class="how">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Tell owed the basics</h3>
+        <p>Your state and a few brands you've used in the last few years. No account. Under a minute.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>See what you may match</h3>
+        <p>owed shows the active settlements where you may match the criteria — with the payout range and the deadline.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>File on the official site</h3>
+        <p>Ready to file? owed links you straight to the settlement administrator's official claim form. You file there.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info">
+    <span class="pill">owed+ · optional</span>
+    <p>The core experience is free, forever. For people who want owed to do the watching for them, owed+ adds brand alerts, multi-state matching, a 30-day look-ahead and earlier deadline reminders. $2.99/month or $19.99/year, with a 7-day free trial. It cancels in two taps, in-app — owed+ is a convenience layer, never a wall.</p>
+    <p>Real settlements. Real deadlines. Real claim forms. owed surfaces public settlement information and cross-verifies it against court records — no inflated estimates, just honest ranges and the real form. Part of the Bramley family of honest personal-finance apps.</p>
+  </section>
+
+  <footer>
+    <div class="foot-links">
+      <a href="mailto:fuqiangug@gmail.com">fuqiangug@gmail.com</a>
+    </div>
+    <p class="disclaimer">owed is not a law firm and does not provide legal advice. owed surfaces public settlement information; you verify your eligibility and file on the administrator's official site.</p>
+    <p class="copyright">© 2026 Fuqiang UG</p>
+  </footer>
+
+</div>
+</body>
+</html>
