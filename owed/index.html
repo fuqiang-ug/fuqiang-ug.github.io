@@ -5,26 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>owed — Find money you might be owed</title>
 
-<!-- Client-side fallback. The Netlify edge function already redirects clear
-     iPhone / iPad / Android user-agents server-side, before this page is served,
-     so those devices never see this page. This script only catches the one case
-     the server can't see from the user-agent alone: an iPad, or an iPhone in
-     Safari's "Request Desktop Website" mode, which sends a Mac user-agent but has
-     a multi-touch screen (no real Mac does). It runs before the page renders. -->
+<!-- Mobile store redirect.
+     Let the landing page render first so Safari keeps the Owed page visible
+     behind the App Store / Play Store. -->
 <script>
   (function () {
-    if (/[?&]debug/i.test(location.search)) return; // ?debug: don't redirect
+    if (/[?&]debug/i.test(location.search)) return;
+
     var ua = navigator.userAgent || "";
     var platform = navigator.platform || "";
     var mt = navigator.maxTouchPoints || 0;
-    var isAppleTouch = /iPad|iPhone|iPod/i.test(ua) ||
-                       ((/Mac/i.test(ua) || /Mac/i.test(platform)) && mt > 1);
+
+    var isAppleTouch =
+      /iPad|iPhone|iPod/i.test(ua) ||
+      ((/Mac/i.test(ua) || /Mac/i.test(platform)) && mt > 1);
+
     var isAndroid = /Android/i.test(ua);
-    if (isAppleTouch) {
-      window.location.replace("https://apps.apple.com/app/id6777274279");
-    } else if (isAndroid) {
-      window.location.replace("https://play.google.com/store/apps/details?id=one.bramley.owed");
-    }
+
+    if (!isAppleTouch && !isAndroid) return;
+
+    window.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        if (isAppleTouch) {
+          window.location.href =
+            "itms-apps://itunes.apple.com/app/id6777274279";
+        } else if (isAndroid) {
+          window.location.href =
+            "https://play.google.com/store/apps/details?id=one.bramley.owed";
+        }
+      }, 300);
+    });
   })();
 </script>
 <meta name="description" content="owed finds the class-action settlements you might match and links you to the official claim form. Free settlement discovery, no account, no bank linking. Live on the App Store." />
