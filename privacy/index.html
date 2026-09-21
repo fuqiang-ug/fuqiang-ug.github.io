@@ -21,7 +21,7 @@
       color: #000;
       font-family: Tahoma, Verdana, Arial, sans-serif;
       font-size: 13px;
-      padding: 24px 12px 48px;
+      padding: 24px 12px 64px;
     }
 
     .window {
@@ -236,6 +236,133 @@
         display: none;
       }
     }
+
+    /* Fuqiang taskbar */
+    .raised {
+      border: 1px solid;
+      border-color: #fff #000 #000 #fff;
+      box-shadow: inset 1px 1px 0 #dfe3e6, inset -1px -1px 0 #808080;
+    }
+
+    .taskbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 40px;
+      z-index: 100;
+      background: #c3c7cb;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px;
+      border-top: 1px solid #fff;
+    }
+
+    .start {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #c3c7cb;
+      padding: 4px 12px 4px 8px;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      font-weight: bold;
+      font-size: 15px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .start .flag {
+      width: 18px;
+      height: 16px;
+      display: inline-block;
+    }
+
+    .start:focus-visible {
+      outline: 1px dotted #000;
+      outline-offset: 1px;
+    }
+
+    .task-open {
+      flex: 0 1 auto;
+      max-width: 280px;
+      background: #c3c7cb;
+      padding: 5px 12px;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: inset -1px -1px 0 #dfe3e6, inset 1px 1px 0 #808080;
+      border-color: #000 #fff #fff #000;
+    }
+
+    .tray {
+      margin-left: auto;
+      padding: 5px 12px;
+      font-size: 13px;
+      color: #111;
+      min-width: 78px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .startmenu {
+      position: fixed;
+      left: 6px;
+      bottom: 44px;
+      width: 220px;
+      z-index: 101;
+      background: #c3c7cb;
+      display: none;
+    }
+
+    .startmenu.open {
+      display: block;
+    }
+
+    .startmenu .sm-band {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      bottom: 3px;
+      width: 26px;
+      background: linear-gradient(#00157f, #1e3a32);
+    }
+
+    .startmenu .sm-band span {
+      position: absolute;
+      bottom: 10px;
+      left: -38px;
+      width: 120px;
+      transform: rotate(-90deg);
+      transform-origin: left bottom;
+      color: #fff;
+      font-weight: bold;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .startmenu ul {
+      list-style: none;
+      margin: 3px 3px 3px 32px;
+      padding: 0;
+    }
+
+    .startmenu li a {
+      display: block;
+      padding: 8px 12px;
+      color: #000;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .startmenu li a:hover,
+    .startmenu li a:focus {
+      background: #00157f;
+      color: #fff;
+      outline: none;
+    }
+
   </style>
 </head>
 
@@ -374,5 +501,86 @@
 
     <div class="statusbar">Done &nbsp; https://fuqiangug.com/privacy/</div>
   </main>
+
+  <div class="startmenu raised" id="startmenu" role="menu" aria-hidden="true">
+    <div class="sm-band"><span>Fuqiang UG</span></div>
+    <ul>
+      <li>
+        <a href="mailto:nate@fuqiangug.com" role="menuitem">Email us…</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="taskbar raised">
+    <button
+      class="start raised"
+      id="startbtn"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <svg class="flag" viewBox="0 0 18 16" aria-hidden="true">
+        <rect x="0" y="1" width="8" height="7" fill="#ff3b3b"/>
+        <rect x="9" y="1" width="8" height="7" fill="#37c837"/>
+        <rect x="0" y="9" width="8" height="6" fill="#2a6ad0"/>
+        <rect x="9" y="9" width="8" height="6" fill="#ffcf33"/>
+      </svg>
+      Start
+    </button>
+
+    <span class="task-open">Privacy — Fuqiang UG</span>
+    <span class="tray raised" id="clock">12:00 PM</span>
+  </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("startbtn");
+      var menu = document.getElementById("startmenu");
+      var clock = document.getElementById("clock");
+
+      function setOpen(open) {
+        menu.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        menu.setAttribute("aria-hidden", open ? "false" : "true");
+      }
+
+      btn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        setOpen(!menu.classList.contains("open"));
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!menu.contains(event.target) && event.target !== btn) {
+          setOpen(false);
+        }
+      });
+
+      menu.addEventListener("click", function () {
+        setOpen(false);
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          setOpen(false);
+        }
+      });
+
+      function tick() {
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        var ap = h >= 12 ? "PM" : "AM";
+
+        h = h % 12;
+        if (h === 0) h = 12;
+
+        clock.textContent =
+          h + ":" + (m < 10 ? "0" : "") + m + " " + ap;
+      }
+
+      tick();
+      setInterval(tick, 15000);
+    })();
+  </script>
+
 </body>
 </html>
