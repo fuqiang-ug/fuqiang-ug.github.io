@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy — Fuqiang UG</title>
+  <meta name="description" content="Privacy information for Fuqiang UG.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: #008080;
+      color: #000;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      font-size: 13px;
+      padding: 24px 12px 48px;
+    }
+
+    .window {
+      width: min(820px, 100%);
+      margin: 0 auto;
+      background: #c0c0c0;
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 28px;
+      padding: 3px 4px 3px 7px;
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .controls {
+      display: flex;
+      gap: 3px;
+    }
+
+    .control {
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      background: #c0c0c0;
+      color: #000;
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .menu {
+      padding: 6px 9px;
+      border-bottom: 1px solid #808080;
+    }
+
+    .menu span {
+      margin-right: 18px;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #808080;
+    }
+
+    .toolbar-label {
+      color: #333;
+    }
+
+    .address {
+      flex: 1;
+      min-width: 0;
+      padding: 5px 7px;
+      background: #fff;
+      border-top: 2px solid #808080;
+      border-left: 2px solid #808080;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content-wrap {
+      padding: 8px;
+    }
+
+    .page {
+      background: #fff;
+      padding: 40px 46px;
+      border-top: 2px solid #808080;
+      border-left: 2px solid #808080;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      min-height: 480px;
+    }
+
+    .brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 28px;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0 0 34px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    h2 {
+      margin: 30px 0 10px;
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0 0 15px;
+      line-height: 1.65;
+      max-width: 680px;
+    }
+
+    a {
+      color: #0000ee;
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 32px;
+    }
+
+    .language-switch a {
+      display: inline-block;
+      padding: 5px 10px;
+      background: #c0c0c0;
+      color: #000;
+      text-decoration: none;
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+    }
+
+    .language-label {
+      color: #666;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .language-divider {
+      margin: 44px 0;
+      border: 0;
+      border-top: 1px solid #aaa;
+    }
+
+    .contact {
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid #ddd;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 6px 12px;
+      background: #c0c0c0;
+      color: #000;
+      text-decoration: none;
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+    }
+
+    .statusbar {
+      margin: 0 8px 8px;
+      padding: 5px 7px;
+      background: #c0c0c0;
+      border-top: 2px solid #808080;
+      border-left: 2px solid #808080;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 8px 6px 24px;
+      }
+
+      .page {
+        padding: 28px 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .menu span {
+        margin-right: 11px;
+      }
+
+      .toolbar-label {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="window">
+    <div class="titlebar">
+      <span>Privacy — Fuqiang UG</span>
+
+      <div class="controls" aria-hidden="true">
+        <span class="control">_</span>
+        <span class="control">□</span>
+        <span class="control">×</span>
+      </div>
+    </div>
+
+    <nav class="menu" aria-label="Browser menu">
+      <span>File</span>
+      <span>Edit</span>
+      <span>View</span>
+      <span>Favorites</span>
+      <span>Help</span>
+    </nav>
+
+    <div class="toolbar">
+      <span class="toolbar-label">Address</span>
+      <div class="address">https://fuqiangug.com/privacy/</div>
+    </div>
+
+    <div class="content-wrap">
+      <article class="page">
+        <div class="brand">fuqiang</div>
+
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">Privacy information for fuqiangug.com</p>
+
+        <div class="language-switch">
+          <a href="#english">English</a>
+          <a href="#deutsch">Deutsch</a>
+        </div>
+
+        <section id="english">
+          <div class="language-label">English</div>
+
+          <h2>Website Privacy</h2>
+
+          <p>
+            This website does not collect personal data. We do not use cookies,
+            tracking tools, or forms.
+          </p>
+
+          <p>
+            When you access this website, the hosting provider (GitHub, Inc.)
+            processes technical access data on its servers, such as IP address,
+            user agent, and timestamp, where this is technically necessary to
+            operate the website. The legal basis is Art. 6(1)(f) GDPR.
+          </p>
+
+          <p>
+            For information about privacy at GitHub Pages, please see the
+            <a
+              href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+              target="_blank"
+              rel="noopener noreferrer"
+            >GitHub Privacy Statement</a>.
+          </p>
+
+          <h2>Your Rights</h2>
+
+          <p>
+            You have the right to access, rectification, erasure, restriction
+            of processing, data portability, and objection in accordance with
+            Articles 15–21 GDPR. To exercise these rights, please contact us
+            using the email address below.
+          </p>
+        </section>
+
+        <hr class="language-divider">
+
+        <section id="deutsch">
+          <div class="language-label">Deutsch</div>
+
+          <h2>Datenschutzerklärung</h2>
+
+          <p>
+            Diese Website erhebt keine personenbezogenen Daten. Es werden keine
+            Cookies gesetzt, keine Tracking-Tools eingesetzt und keine Formulare
+            angeboten.
+          </p>
+
+          <p>
+            Beim Aufruf der Website werden vom Hosting-Anbieter (GitHub, Inc.)
+            serverseitig technische Zugriffsdaten (z. B. IP-Adresse, User-Agent,
+            Zeitstempel) verarbeitet, die zum Betrieb der Website technisch
+            erforderlich sind. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+
+          <p>
+            Informationen zum Datenschutz bei GitHub Pages finden Sie unter
+            <a
+              href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+              target="_blank"
+              rel="noopener noreferrer"
+            >GitHub Privacy Statement</a>.
+          </p>
+
+          <h2>Ihre Rechte</h2>
+
+          <p>
+            Sie haben das Recht auf Auskunft, Berichtigung, Löschung,
+            Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch
+            gemäß Art. 15–21 DSGVO. Wenden Sie sich hierzu an die unten angegebene
+            E-Mail-Adresse.
+          </p>
+        </section>
+
+        <div class="contact">
+          <h2>Contact / Kontakt</h2>
+
+          <p>
+            Fuqiang UG (haftungsbeschränkt)<br>
+            c/o Nathaniel Barker<br>
+            Sophienstraße 22A<br>
+            10178 Berlin<br>
+            Germany
+          </p>
+
+          <p>
+            Email / E-Mail:
+            <a href="mailto:nate@fuqiangug.com">nate@fuqiangug.com</a>
+          </p>
+
+          <a class="back" href="https://fuqiangug.com/">← Back to fuqiangug.com</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="statusbar">Done &nbsp; https://fuqiangug.com/privacy/</div>
+  </main>
+</body>
+</html>
