@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<title>Nomu — Café Drink Guide</title>
+<meta name="description" content="Discover café drinks, customize them, and show a clear card to café staff — in Japanese, Arabic, or English.">
+<meta property="og:title" content="Nomu — Café Drink Guide">
+<meta property="og:description" content="Discover café drinks, customize them, and show a clear card to café staff — in Japanese, Arabic, or English.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fuqiangug.com/nomu/">
+<style>
+  :root {
+    --paper: #FFFAF8;
+    --ink: #1A1A1E;
+    --muted: #55555C;
+    --coral: #FF6B54;
+    --coral-text: #B0451F;
+    --tint: #FFE4DC;
+    --card: #FFFFFF;
+    --hairline: rgba(26, 26, 30, 0.10);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  h1, h2, p { overflow-wrap: break-word; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 32px 28px 56px; }
+  a { color: var(--coral-text); }
+
+  /* ── Hero ───────────────────────────────────────────── */
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 44px; }
+  .brand img { width: 40px; height: 40px; border-radius: 22%; }
+  .brand span { font-weight: 800; font-size: 24px; color: var(--coral); letter-spacing: -0.01em; }
+
+  .hero { display: grid; grid-template-columns: 1fr 460px; gap: 48px; align-items: center; }
+  .hero h1 { font-weight: 700; font-size: 46px; line-height: 1.08; letter-spacing: -0.026em; margin: 0 0 18px; }
+  .hero .lede { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 460px; }
+
+  .badges { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .badge { display: inline-block; height: 52px; }
+  .badge img { height: 100%; width: auto; display: block; }
+  .badge.disabled { opacity: 0.45; pointer-events: none; filter: grayscale(0.15); }
+  .coming { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+
+  /* ── Phone frames ───────────────────────────────────── */
+  .phones { position: relative; width: 460px; height: 600px; }
+  .phone { position: absolute; width: 244px; background: var(--ink); border-radius: 40px; padding: 9px;
+           box-shadow: 0 24px 60px rgba(26,26,30,0.22); }
+  .phone img { display: block; width: 100%; border-radius: 32px; }
+  .phone.p1 { left: 2px; top: 40px; transform: rotate(-5deg); z-index: 1; }
+  .phone.p2 { right: 2px; top: 0; transform: rotate(4deg); z-index: 2; }
+
+  /* ── Features ───────────────────────────────────────── */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 84px 0 0; }
+  .feature h3 { margin: 0 0 6px; font-size: 20px; font-weight: 700; }
+  .feature p { margin: 0; color: var(--muted); font-size: 16px; }
+  .feature .dot { display: inline-block; width: 34px; height: 34px; border-radius: 10px; background: var(--tint);
+                  margin-bottom: 12px; position: relative; }
+  .feature .dot::after { content: ""; position: absolute; inset: 11px; border-radius: 4px; background: var(--coral); }
+
+  /* ── Languages + Nomu+ ──────────────────────────────── */
+  .strip { margin: 72px 0 0; text-align: center; }
+  .langs { font-weight: 700; font-size: 22px; letter-spacing: 0.01em; }
+  .langs b { color: var(--coral-text); font-weight: 700; }
+  .strip p { color: var(--muted); font-size: 16px; margin: 8px 0 0; }
+
+  .plus { margin: 40px 0 0; background: var(--tint); border-radius: 20px; padding: 26px 30px; text-align: center; }
+  .plus h3 { margin: 0 0 6px; color: var(--coral-text); font-size: 22px; font-weight: 700; }
+  .plus p { margin: 0; color: var(--ink); font-size: 16px; }
+  .plus .facts { color: var(--muted); font-size: 15px; margin-top: 6px; }
+
+  /* ── Footer ─────────────────────────────────────────── */
+  hr { border: none; border-top: 1px solid var(--hairline); margin: 64px 0 24px; }
+  footer { color: var(--muted); font-size: 15px; text-align: center; }
+  footer .links { margin-bottom: 8px; }
+  footer .links a { color: var(--muted); margin: 0 12px; text-decoration: underline; text-underline-offset: 2px; }
+  footer .links a:hover { color: var(--coral); }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 28px 24px 44px; }
+    .hero { grid-template-columns: 1fr; gap: 8px; }
+    .hero h1 { font-size: 32px; }
+    .hero .lede { max-width: none; font-size: 17px; }
+    .badges { justify-content: flex-start; flex-wrap: wrap; }
+    .badge { height: 46px; }
+    .phones { width: 100%; height: auto; margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .phone { position: static; width: 220px; max-width: 72%; transform: none !important; }
+    .features { grid-template-columns: 1fr; gap: 26px; margin-top: 56px; }
+    .feature p { font-size: 15.5px; }
+    .langs { font-size: 18px; }
+    .strip p, .plus p, .plus .facts { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <img src="./shots/app-icon.png" alt="Nomu app icon">
+    <span>Nomu</span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Discover café drinks with confidence.</h1>
+      <p class="lede">Discover café drinks, customize them, and show a clear card to café staff — in Japanese, Arabic, or English.</p>
+      <div class="badges" id="badges">
+        <a class="badge disabled" id="badge-ios" aria-disabled="true">
+          <img src="./badges/appstore-badge.svg" alt="Download on the App Store">
+        </a>
+        <a class="badge disabled" id="badge-android" aria-disabled="true">
+          <img src="./badges/googleplay-badge.png" alt="Get it on Google Play">
+        </a>
+      </div>
+      <p class="coming" id="coming">Coming soon on the App Store and Google Play.</p>
+    </div>
+
+    <div class="phones">
+      <div class="phone p1"><img src="./shots/home.png" alt="Nomu — discover café drinks (Home)"></div>
+      <div class="phone p2"><img src="./shots/staff-card.png" alt="Nomu — the staff-facing order card"></div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature"><span class="dot"></span><h3>Discover</h3><p>Browse café drinks and understand what&rsquo;s in them.</p></div>
+    <div class="feature"><span class="dot"></span><h3>Customize</h3><p>Adjust compatible options like milk, sweetness, ice, and syrups.</p></div>
+    <div class="feature"><span class="dot"></span><h3>Show staff</h3><p>Turn your choice into a clear card you can show at the café.</p></div>
+  </section>
+
+  <section class="strip">
+    <div class="langs"><b>Japanese</b> · <b>Arabic</b> · <b>English</b></div>
+    <p>Switch the app language and the Staff Card language independently.</p>
+  </section>
+
+  <section class="plus">
+    <h3>Nomu+</h3>
+    <p>Nomu+ unlocks the full drink catalog.</p>
+    <p class="facts">114 drinks total · 66 additional Nomu+ drinks.</p>
+  </section>
+
+  <hr>
+  <footer>
+    <div class="links">
+      <a href="/nomu/privacy/">Privacy Policy</a>
+      <a href="/nomu/terms/">Terms of Service</a>
+      <a href="/nomu/support/">Support</a>
+    </div>
+    &copy; 2026 Fuqiang UG
+  </footer>
+</div>
+
+<script>
+  // Store badge launch flags.
+  // While false, the official store badges are shown in a non-live (dimmed, non-clickable) state and
+  // the "Coming soon" line is visible. Flip to true only once the matching store listing is public.
+  var IOS_LIVE = false;
+  var PLAY_LIVE = false;
+  var APP_STORE_URL = "https://apps.apple.com/app/id6815178824";
+  var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=one.bramley.nomu";
+  (function () {
+    function live(id, url) { var b = document.getElementById(id); b.classList.remove("disabled"); b.setAttribute("href", url); b.setAttribute("target", "_blank"); b.setAttribute("rel", "noopener"); b.removeAttribute("aria-disabled"); }
+    if (IOS_LIVE) live("badge-ios", APP_STORE_URL);
+    if (PLAY_LIVE) live("badge-android", PLAY_STORE_URL);
+    if (IOS_LIVE || PLAY_LIVE) {
+      var c = document.getElementById("coming");
+      if (IOS_LIVE && PLAY_LIVE) c.remove();
+      else c.textContent = IOS_LIVE ? "Also coming soon on Google Play." : "Also coming soon on the App Store.";
+    }
+  })();
+</script>
+</body>
+</html>
