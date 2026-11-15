@@ -1,0 +1,14 @@
+Fuqiang Pipeline Test
+
+A one-tap reflex game used to test our release process.
+
+Tap the orange dot to score a point. The dot jumps to a new spot after every tap. There is no timer and no way to lose, so a round lasts as long as you like.
+
+Plays on: iPhone and Apple Watch
+Requires: iPhone with iOS 17 or later. Apple Watch with watchOS 10 or later.
+Price: Free. No ads and no purchases inside the app.
+Version: 1.0
+Released: Not released yet
+Page: https://fuqiangug.com/pipeline-test/
+Publisher: Fuqiang UG (haftungsbeschränkt), Berlin
+Contact: fuqiangug@gmail.com
