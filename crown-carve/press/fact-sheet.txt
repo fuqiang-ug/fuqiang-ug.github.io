@@ -1,0 +1,15 @@
+Crown Carve: Ski Game
+
+A downhill ski run for Apple Watch and iPhone. Turn the Digital Crown, carve through the trees, and see how far you get before the mountain wins.
+
+Steer left and right between trees, rocks, logs and snowmen: turn the Digital Crown on Apple Watch, or drag on iPhone. The further you go, the faster it gets, and one crash ends the run. A pass close to an obstacle is worth 10 points and a ramp is worth 30. Skiing between two flags multiplies everything you score, up to 5 times, until the multiplier runs out. A blue shield takes one crash for you.
+
+Plays on: iPhone and Apple Watch
+Requires: iPhone with iOS 17 or later. Apple Watch with watchOS 10 or later.
+Price: US$1.99. You pay once. There are no ads and no purchases inside the game. Outside the US, the price is the one in your country's App Store.
+Version: 1.0
+Released: Not released yet
+Languages: English, Deutsch, Français, 日本語, 한국어, 繁體中文
+Page: https://fuqiangug.com/crown-carve/
+Publisher: Fuqiang UG (haftungsbeschränkt), Berlin
+Contact: fuqiangug@gmail.com
