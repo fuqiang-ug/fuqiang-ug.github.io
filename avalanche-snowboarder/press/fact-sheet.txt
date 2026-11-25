@@ -1,0 +1,15 @@
+Avalanche Snowboarder
+
+A one-finger snowboard run for Apple Watch and iPhone. Hold to dive, let go to fly, land clean, and stay ahead of the avalanche across ten paper islands.
+
+Hold anywhere on the screen to dive down a hill and gather speed. Let go on the rise to fly, and come down along the next slope to keep your speed and multiply your score, up to five times. While you float, the rider does tricks; a clean landing keeps their points and fills the SHRED meter. Snowflakes are worth 5 points, ice patches and gates fire you forward, and each lift station pushes the avalanche back and opens the next island. The run ends when the avalanche catches you.
+
+Plays on: iPhone and Apple Watch
+Requires: iPhone with iOS 17 or later. Apple Watch with watchOS 10 or later.
+Price: US$1.99. You pay once. There are no ads and no purchases inside the game. Outside the US, the price is the one in your country's App Store.
+Version: 1.0
+Released: Not released yet
+Languages: English, Deutsch, Français, 日本語, 한국어, 繁體中文
+Page: https://fuqiangug.com/avalanche-snowboarder/
+Publisher: Fuqiang UG (haftungsbeschränkt), Berlin
+Contact: fuqiangug@gmail.com
