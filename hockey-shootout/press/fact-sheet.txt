@@ -1,0 +1,15 @@
+Pond Hockey Shootout: Ice Game
+
+A hockey shootout made for your wrist. Flick the puck past six family goalies, from the kid to Biscuit the dog, and come back for a new shootout every day.
+
+Flick up the ice with one finger to shoot: the direction of the flick is the aim and its speed is the power. A goal is worth 1 point, a top corner 3, and a one-timer off a pass counts double. Goals in a row multiply your score, up to 5 times. A save, a post or a miss costs a puck, and the third lost puck ends the run. Every three goals the next of six family goalies takes over. Tap the calendar before a run for today's shootout, the same for everyone that day.
+
+Plays on: iPhone and Apple Watch
+Requires: iPhone with iOS 17 or later. Apple Watch with watchOS 10 or later.
+Price: US$1.99. You pay once. There are no ads and no purchases inside the game. Outside the US, the price is the one in your country's App Store.
+Version: 1.0
+Released: Not released yet
+Languages: English, Deutsch, Français, 日本語, 한국어, 繁體中文
+Page: https://fuqiangug.com/hockey-shootout/
+Publisher: Fuqiang UG (haftungsbeschränkt), Berlin
+Contact: fuqiangug@gmail.com
